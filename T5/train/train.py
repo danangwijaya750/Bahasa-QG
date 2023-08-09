@@ -48,6 +48,7 @@ if __name__ == "__main__":
     dataset = load_dataset('csv', data_files=data_files, on_bad_lines='skip', streaming=True)
     train_set = QGDataset(dataset["train"], args.max_length, args.pad_mask_id, tokenizer)
     valid_set = QGDataset(dataset["validation"], args.max_length, args.pad_mask_id, tokenizer)
+    print(train_set)
     model = get_model(args.qg_model, args.device, tokenizer)
     trainer = Trainer(
         dataloader_workers=args.dataloader_workers,
@@ -63,4 +64,4 @@ if __name__ == "__main__":
         valid_batch_size=args.valid_batch_size,
         valid_set=valid_set
     )
-    trainer.train()
+    #trainer.train()
